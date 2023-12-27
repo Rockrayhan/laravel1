@@ -18,7 +18,7 @@
               <a class="nav-link" href="/contact">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
+              <a class="nav-link " href="/allcontacts">Queries</a>
             </li>
           </ul>
         </div>
