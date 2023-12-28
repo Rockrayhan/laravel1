@@ -57,11 +57,60 @@ class HomeController extends Controller
         }
     }
 
+    
+    // view
     public function contactList(){
         $contacts = Contact::all();
         $data['messages'] = $contacts ;
-        print_r($data);
+        // print_r($data);
         return view('contactList', $data);
+    }
+
+
+// delete
+    public function delete($id){
+        echo $id ;
+        $contact = Contact::find($id);
+        $contact->delete();
+        // redirect('/allcontacts');
+        return redirect('/allcontacts')->with('msg' , 'Your data has been deleted') ;
+    }
+
+
+// edit
+    public function edit($id){
+        $contact = Contact::find($id);
+        $data['single'] = $contact; 
+        return view('contactEdit' , $data);
+    }
+
+
+// update
+    public function update( Request $req, $id ){
+        $contact = Contact::find($id);
+
+        $messages = [
+            'name.required' => 'Naam koi ??',
+            'subject.required' => 'Subject den vai please',
+            'subject.min' => 'Subject er length barao',
+        ] ;
+
+        $validate = $req->validate([
+            'name' => 'required|min:4|max:255',
+            'email' => 'email',
+        ], $messages );
+
+        if ($validate) {
+            $data = [
+                'name' => $req->name,
+                'email' => $req->email,
+                'subject' => $req->subject,
+                'message' => $req->message,
+            ];
+            // print_r($request) ;
+            $contact->update($data);
+            return redirect('contact')->with('msg' , 'Your data has updated') ;
+        }
     }
 
 }

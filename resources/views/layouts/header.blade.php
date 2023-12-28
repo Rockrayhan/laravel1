@@ -18,7 +18,7 @@
               <a class="nav-link" href="/contact">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link " href="/allcontacts">Queries</a>
+              <a class="nav-link " href="/allcontacts">All Contacts</a>
             </li>
           </ul>
         </div>
